@@ -10,9 +10,36 @@
     <title>Library</title>
   </head>
   <body>
-    <button data-modal-target="#modal">open modal</button>
+    <button data-modal-target="#modal">Add Book</button>
     <div class="modal" id="modal">
-      <button data-close-button class="close-button">&times;</button>
+      <div id="modal-header">
+        <button data-close-button class="close-button">&times;</button>
+      </div>
+      <form id="form">
+        <div class="title-selection" id>
+          <label for="title">Title</label>
+          <input type="text" id="title" />
+        </div>
+        <div class="author-selection">
+          <label for="author">Author</label>
+          <input type="text" id="author" />
+        </div>
+        <div class="pages-selection">
+          <label for="pages">Pages</label>
+          <input type="number" id="pages" />
+        </div>
+        <div class="read-selection">
+          <label for="read">Have you read this book?</label>
+          <input type="radio" id="read-false" />
+          <input type="radio" id="read-true" />
+        </div>
+        <input
+          type="submit"
+          value="submit"
+          id="submit-button"
+          onclick="getValues()"
+        />
+      </form>
     </div>
     <div id="overlay"></div>
   </body>
