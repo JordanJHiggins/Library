@@ -2,35 +2,34 @@ const addBookButton = document.getElementById("add-book");
 const openModalButtons = document.querySelectorAll("[data-modal-target]");
 const closeModalButtons = document.querySelectorAll("[data-close-button]");
 const overlay = document.getElementById("overlay");
-const form = document.getElementById("form");
-// const title = document.getElementById("title");
+// Card elements
+const cardContainer = document.getElementById("card-container");
+const cardTitle = document.querySelector(".card-title");
+const cardAuthor = document.querySelector(".card-author");
+const cardPages = document.querySelector(".card-pages");
+// clone of card
+const clone = document.querySelector(".card").cloneNode(true);
 
 // Main App
 let myLibrary = [];
 
-function Book(title, author, pages, hasRead) {
+function Book(title, author, pages) {
   this.title = title;
   this.author = author;
   this.pages = pages;
-  this.hasRead = hasRead;
 }
 
 function addBookToLibrary() {
-  let newBook = new Book("The Hobbit", "JRR Tolkien", 225, false);
+  const newBook = Object.create(Book);
+  newBook.title = document.getElementById("title").value;
+  newBook.author = document.getElementById("author").value;
+  newBook.pages = document.getElementById("pages").value;
 
   myLibrary.push(newBook);
-
-  console.log(myLibrary);
+  document.querySelector("#form").reset();
 }
-
-// addBookButton.addEventListener("click", addBookToLibrary());
 
 // Helper Functions
-function getValues() {
-  const title = document.getElementById("title").value;
-
-  console.log(title);
-}
 // Prevents page from automatically refreshing when form is submitted.
 function handleForm(event) {
   event.preventDefault();
