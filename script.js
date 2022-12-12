@@ -2,13 +2,8 @@ const addBookButton = document.getElementById("add-book");
 const openModalButtons = document.querySelectorAll("[data-modal-target]");
 const closeModalButtons = document.querySelectorAll("[data-close-button]");
 const overlay = document.getElementById("overlay");
-// Card elements
+
 const cardContainer = document.getElementById("card-container");
-// const cardTitle = document.querySelector(".card-title");
-// const cardAuthor = document.querySelector(".card-author");
-// const cardPages = document.querySelector(".card-pages");
-// clone of card
-// const clone = document.querySelector(".card").cloneNode(true);
 
 // Main App
 let myLibrary = [];
@@ -34,13 +29,19 @@ function displayBook(newBook) {
   const newCard = document.createElement("div");
   const cardTitle = document.createElement("p");
   const cardAuthor = document.createElement("p");
+  const removeButton = document.createElement("button");
 
   newCard.classList.add("card");
   cardTitle.classList.add("title");
   cardAuthor.classList.add("author");
+  removeButton.classList.add("remove-button");
+
+  removeButton.setAttribute("onclick", "this.parentNode.remove()");
+  removeButton.textContent = "Remove";
 
   newCard.appendChild(cardTitle);
   newCard.appendChild(cardAuthor);
+  newCard.appendChild(removeButton);
   cardContainer.appendChild(newCard);
 
   cardTitle.innerText = newBook.title;
