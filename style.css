@@ -43,3 +43,21 @@
   opacity: 1;
   pointer-events: all;
 }
+
+.card-title {
+  font-family: "Courier New", Courier, monospace;
+  font-size: larger;
+  color: black;
+}
+
+.card {
+  background-color: grey;
+}
+
+.toggle-active {
+  background-color: green;
+}
+
+.toggle-inactive {
+  background-color: red;
+}

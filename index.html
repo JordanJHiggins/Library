@@ -30,8 +30,8 @@
         </div>
         <div class="read-selection">
           <label for="read">Have you read this book?</label>
-          <input type="radio" id="read-false" />
-          <input type="radio" id="read-true" />
+          <input  type="checkbox" value="false" id="read"/>
+         
         </div>
         <input
           type="submit"
@@ -39,15 +39,13 @@
           id="submit-button"
           onclick="addBookToLibrary()"
         />
+        <
       </form>
+     
     </div>
     <div id="overlay"></div>
 
     <div id="card-container">
-      <div class="card">
-        <p class="card-title"></p>
-        <p class="card-author"></p>
-        <p class="card-pages"></p>
       </div>
     </div>
   </body>
