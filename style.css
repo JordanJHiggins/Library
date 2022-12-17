@@ -134,7 +134,7 @@ body {
 
 [data-modal-target] {
   color: #f8fafc;
-  background-color: #292524;
+  background-color: #44403c;
   border-radius: 25px;
   border-style: none;
   outline-style: none;
@@ -160,4 +160,14 @@ body {
 
   min-width: 200px;
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+[data-modal-target]:hover {
+  background-color: #a8a29e;
+  box-shadow: 0 5px #666;
+  transform: translateY(-1px);
+}
+
+[data-modal-target]:active {
+  transform: translateY(1px);
 }
