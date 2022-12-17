@@ -4,6 +4,19 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+/* Grid wrapper */
+#grid-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+}
+
+/* Modal */
 .modal {
   position: fixed;
   top: 50%;
@@ -43,7 +56,15 @@
   opacity: 1;
   pointer-events: all;
 }
-
+/*Cards*/
+#card-container {
+  background-color: #d6d3d1;
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas: 2/ 1 / 3/ 2;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-rows: repeat(auto-fit, 30vh);
+}
 .card-title {
   font-family: "Courier New", Courier, monospace;
   font-size: larger;
@@ -51,7 +72,11 @@
 }
 
 .card {
-  background-color: grey;
+  background-color: #fafaf9;
+  border-radius: 15px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  margin: 1rem;
 }
 
 .toggle-active {
@@ -60,4 +85,30 @@
 
 .toggle-inactive {
   background-color: red;
+}
+
+/*Sidebar*/
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  grid-template-areas: 1 / 1 / 2 / 2;
+  background-color: #d6d3d1;
+}
+[data-modal-target] {
+  color: #f8fafc;
+  background-color: #292524;
+  border-radius: 25px;
+  border-style: none;
+  outline-style: none;
+  height: 3rem;
+  margin: 1rem;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.side-bar h2 {
+  margin: 0;
+  padding: 1rem;
 }
