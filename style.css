@@ -186,6 +186,9 @@ body {
 }
 
 [data-modal-target] {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
   color: #f8fafc;
   background-color: #44403c;
   border-radius: 25px;
