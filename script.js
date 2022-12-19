@@ -2,11 +2,10 @@ const openModalButtons = document.querySelectorAll("[data-modal-target]");
 const closeModalButtons = document.querySelectorAll("[data-close-button]");
 const overlay = document.getElementById("overlay");
 const cardContainer = document.getElementById("card-container");
-
-// Main App
+const submitButton = document.getElementById("submit-button");
+const form = document.getElementById("form");
 const myLibrary = [];
 
-// Book constructor.
 function Book(title, author, pages, readStatus, initialReadStatus) {
   this.title = title;
   this.author = author;
@@ -15,24 +14,20 @@ function Book(title, author, pages, readStatus, initialReadStatus) {
   this.initialReadstatus = initialReadStatus;
 }
 
-// Get values and add new book to library.
-function addBookToLibrary() {
-  const newBook = new Book();
+function toggleActive(button) {
+  button.innerText = "Read";
+  button.classList.remove("toggle-inactive");
+  button.classList.add("toggle-active");
+}
 
-  newBook.title = `"${document.getElementById("title").value}"`;
-  newBook.author = document.getElementById("author").value;
-  newBook.pages = document.getElementById("pages").value;
-  newBook.readStatus = 1;
-  newBook.initialReadstatus = "";
-
-  myLibrary.push(newBook);
-
-  createBook(newBook);
-  formReset();
+function toggleInactive(button) {
+  button.innerText = "Not read";
+  button.classList.remove("toggle-active");
+  button.classList.add("toggle-inactive");
 }
 
 Book.prototype.readToggle = (statusValue, button) => {
-  if (statusValue % 2 == 0) {
+  if (statusValue % 2 === 0) {
     toggleActive(button);
   } else {
     toggleInactive(button);
@@ -40,19 +35,16 @@ Book.prototype.readToggle = (statusValue, button) => {
 };
 
 Book.prototype.initReadStatus = (button) => {
-  let isRead = document.querySelector("#read");
+  const isRead = document.querySelector("#read");
 
   if (isRead.checked) {
     toggleActive(button);
-    console.log("bong");
-    // toggleActive();
   } else {
-    console.log("bing");
     toggleInactive(button);
   }
 };
 // Create book
-function createBook(newBook) {
+function displayBook(newBook) {
   const newCard = document.createElement("div");
   const cardTitle = document.createElement("p");
   const cardAuthor = document.createElement("p");
@@ -83,6 +75,7 @@ function createBook(newBook) {
 
   newBook.initReadStatus = newBook.initReadStatus(statusButton);
 
+  // removes book element from myLibrary
   removeButton.addEventListener("click", () => {
     myLibrary.splice(myLibrary.indexOf(newBook), 1);
   });
@@ -93,39 +86,47 @@ function createBook(newBook) {
   });
 }
 
-// Helper Functions
-
-// function initReadStatus() {
-//   let isRead = document.getElementById("read");
-
-//   if (isRead.checked) {
-//     console.log("bong");
-//     // toggleActive();
-//   }
-// }
-
-// Prevents page from automatically refreshing when form is submitted.
-function handleForm(event) {
-  event.preventDefault();
-}
-form.addEventListener("submit", handleForm);
-
 function formReset() {
   document.querySelector("#form").reset();
 }
 
-function toggleActive(button) {
-  button.innerText = "Read";
-  button.classList.remove("toggle-inactive");
-  button.classList.add("toggle-active");
+// Get values and add new book to library.
+function addBookToLibrary() {
+  const newBook = new Book();
+
+  newBook.title = `"${document.getElementById("title").value}"`;
+  newBook.author = document.getElementById("author").value;
+  newBook.pages = document.getElementById("pages").value;
+  newBook.readStatus = 1;
+  newBook.initialReadstatus = "";
+
+  myLibrary.push(newBook);
+
+  displayBook(newBook);
+  formReset();
 }
 
-function toggleInactive(button) {
-  button.innerText = "Not read";
-  button.classList.remove("toggle-active");
-  button.classList.add("toggle-inactive");
-}
+submitButton.addEventListener("click", addBookToLibrary);
+
+// Prevents page from automatically refreshing when form is submitted.
+form.addEventListener("submit", (event) => {
+  event.preventDefault();
+});
+
 // Modal
+function openModal(modal) {
+  if (modal == null) return;
+
+  modal.classList.add("active");
+  overlay.classList.add("active");
+}
+function closeModal(modal) {
+  if (modal == null) return;
+
+  modal.classList.remove("active");
+  overlay.classList.remove("active");
+}
+
 openModalButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const modal = document.querySelector(button.dataset.modalTarget);
@@ -146,17 +147,3 @@ closeModalButtons.forEach((button) => {
     closeModal(modal);
   });
 });
-
-function openModal(modal) {
-  if (modal == null) return;
-
-  modal.classList.add("active");
-  overlay.classList.add("active");
-}
-
-function closeModal(modal) {
-  if (modal == null) return;
-
-  modal.classList.remove("active");
-  overlay.classList.remove("active");
-}
