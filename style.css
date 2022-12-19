@@ -117,7 +117,7 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
   grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
   padding: 2rem 2rem;
-  min-height: 100vh;
+  min-height: 95vh;
 }
 
 .card-title {
@@ -226,4 +226,24 @@ body {
 
 [data-modal-target]:active {
   transform: translateY(1px);
+}
+
+/* Footer */
+.footer {
+  color: #44403c;
+  display: flex;
+  align-items: center;
+  align-self: flex-end;
+  justify-content: center;
+  gap: 20px;
+  background-color: #f8fafc;
+  width: 100vw;
+  height: 5vh;
+}
+
+.github-logo {
+  transition: transform 0.5s ease-in-out;
+}
+.github-logo:hover {
+  transform: rotate(360deg);
 }
