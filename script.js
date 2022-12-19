@@ -1,11 +1,10 @@
-const addBookButton = document.getElementById("add-book");
 const openModalButtons = document.querySelectorAll("[data-modal-target]");
 const closeModalButtons = document.querySelectorAll("[data-close-button]");
 const overlay = document.getElementById("overlay");
 const cardContainer = document.getElementById("card-container");
 
 // Main App
-let myLibrary = [];
+const myLibrary = [];
 
 // Book constructor.
 function Book(title, author, pages, readStatus, initialReadStatus) {
@@ -18,7 +17,7 @@ function Book(title, author, pages, readStatus, initialReadStatus) {
 
 // Get values and add new book to library.
 function addBookToLibrary() {
-  let newBook = new Book();
+  const newBook = new Book();
 
   newBook.title = `"${document.getElementById("title").value}"`;
   newBook.author = document.getElementById("author").value;
