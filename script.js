@@ -6,12 +6,32 @@ const submitButton = document.getElementById("submit-button");
 const form = document.getElementById("form");
 const myLibrary = [];
 
-function Book(title, author, pages, readStatus, initialReadStatus) {
-  this.title = title;
-  this.author = author;
-  this.pages = pages;
-  this.readStatus = readStatus;
-  this.initialReadstatus = initialReadStatus;
+class Book {
+  constructor(title, author, pages, readStatus, initialReadStatus) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.readStatus = readStatus;
+    this.initialReadstatus = initialReadStatus;
+  }
+
+  readToggle(statusValue, button) {
+    if (statusValue % 2 === 0) {
+      toggleActive(button);
+    } else {
+      toggleInactive(button);
+    }
+  }
+
+  initReadStatus(button) {
+    const isRead = document.querySelector("#read");
+
+    if (isRead.checked) {
+      toggleActive(button);
+    } else {
+      toggleInactive(button);
+    }
+  }
 }
 
 function toggleActive(button) {
